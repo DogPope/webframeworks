@@ -1,0 +1,38 @@
+doctype html
+html
+ head
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title= title
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+  link#bootstrap-css(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css', rel='stylesheet')
+  script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js')
+  script(src='//code.jquery.com/jquery-1.11.1.min.js')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+ body
+.container
+  .row
+    .span12
+      .head
+        .row-fluid
+          .span12
+            .span6
+              h1.muted Welcome to Daniel Industries!
+            .span4.offset2(style='margin-top:15px;')
+              a(href='/login').button.btn.pull-right(type='button') Login!
+        .navbar
+          .navbar-inner(style='background-color: black')
+            .container
+              ul.nav
+                li
+                  a(href='/gamepage') Explore New Games
+                li
+                  a(href='/register') Register Account
+    block content
+    footer
+    .row
+     .col-12
+      p Copyright 1912 Daniel Industries inc. &copy
+script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js')
+script(src='/javascripts/bootstrap.min.js')

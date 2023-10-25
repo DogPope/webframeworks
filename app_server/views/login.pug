@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  form(method='get')
+    .container
+      h2 Login
+      p Enter your login details to continue!
+      hr
+      // Label down to input is one block of code.
+      label(for='email')
+        b Email
+      input#email(type='text', placeholder='Email', name='email', required)
+      label(for='password')
+        b Password
+      input#password(type='password', placeholder='Password', name='password', required)
+      button.registerbtn(type='submit') Login
+    .signin
+      p
+        | Don't have an account? 
+        a(href='/register') Register Here!
+        |

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  form(method='get')
+    .container
+      h2 Register
+      p Please fill in this form to create an account, all fields must be filled in!
+      hr
+      label(for='email')
+        b Email
+      input#email(type='text', placeholder='Email', name='email', required)
+      label(for='cardnumber')
+        b Credit Card Number
+      input#cardnumber(type='password', placeholder='Card Number', name='card', required)
+      br
+      label(for='phone')
+        b Phone
+      input#phone(type='text', placeholder='Phone', name='phone', required)
+      label(for='password')
+        b Password
+      input#password(type='password', placeholder='Password', name='password', required)
+      p
+        | By creating an account you agree to our 
+        a(href='/about') Terms &amp; Privacy
+        | .
+      button.registerbtn(type='submit') Register
+    .signin
+      p
+        | Already have an account? 
+        a(href='/login') Sign in
+        | .
