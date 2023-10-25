@@ -1,0 +1,114 @@
+    1  #!/bin/bash
+    2  # Check if the file name is provided as an argument
+    3  if [ $# -eq 0 ]; then     echo "Please provide a file name as an argument.";     exit 1; fi
+    4  #!/bin/bash
+    5  # Check if the file name is provided as an argument
+    6  if [ $# -eq 0 ]; then     echo "Please provide a file name as an argument.";     exit 1; fi
+    7  ls -l
+    8  mkdir source && cd source
+    9  git clone -b chapter-03 https://github.com/simonholmes/getting-MEAN-2.git
+   10  exit
+   11  node --version
+   12  npm --version
+   13  git init
+   14  git add --all
+   15  git commit -m "First Commit"
+   16  git remote add origin <https://github.com/DogPope/webframeworks.git>
+   17  git remote add origin https://github.com/DogPope/webframeworks.git
+   18  echo "# webframeworks" >> README.md
+   19  git init
+   20  git push origin master
+   21  git push origin master
+   22  ls -l
+   23  cd spp_server
+   24  cd app_server
+   25  ls -l
+   26  git remote add origin https://github.com/DogPope/webframeworks.git
+   27  git add --all
+   28  git commit -m "Wheeeee!"
+   29  git push origin master
+   30  exit
+   31  ls -l
+   32  cd 'Resident Evil Games'
+   33  ls -l
+   34  cd ..
+   35  ls -l
+   36  exit
+   37  su
+   38  sudo cd Downloads
+   39  exit
+   40  ls -l
+   41  exit
+   42  echo "# Software-Tools-Project" >> README.md
+   43  git init
+   44  git commit -m "First Commit"
+   45  git branch -M main
+   46  git remote add origin https://github.com/DogPope/Software-Tools-Project.git
+   47  git push -u origin main
+   48  exit
+   49  ls -l names
+   50  exit
+   51  sudo su
+   52  exit
+   53  cd ..
+   54  cd Desktop
+   55  clear
+   56  python
+   57  exit
+   58  node_modules\.bin\nodemon
+   59  node_modules/.bin/nodemon
+   60  exit
+   61  git clone -b chapter-03 https://github.com/simonholmes/getting-MEAN-2.git
+   62  cd getting-MEAN-2
+   63  ls
+   64  npm install
+   65  cd node_modules/.bin/nodemon
+   66  cd node_modules
+   67  cd bin
+   68  cd .bin
+   69  nodemon
+   70  exit
+   71  exit
+   72  git config --global user.name "Daniel Jameson"
+   73  exit
+   74  git config user.name "Daniel Jameson"
+   75  git config --global user.name "Daniel Jameson"
+   76  git config --global user.email danieljffs@gmail.com
+   77  git config --global init.default branch main
+   78  git config help
+   79  git help config
+   80  git init
+   81  git status
+   82  git add app.js
+   83  git status
+   84  git rm app.js
+   85  git status
+   86  git rm --cached app.js
+   87  git status
+   88  git status
+   89  git add --all
+   90  git commit -m "Goodbye Cruel World!"
+   91  git status
+   92  git diff
+   93  git add index.js
+   94  git add app_server/routes/index.js
+   95  git status
+   96  git restore --staged app_server/routes/index.js
+   97  sit status
+   98  git status
+   99  git diff
+  100  git commit -am "updated Index.js to annoy git"
+  101  git diff
+  102  git log
+  103  git blame
+  104  git status
+  105  git add test.txt
+  106  git status
+  107  git commit -m "Added Squirtle to random text file for branch testing"
+  108  git status
+  109  git branch ChangePokemon
+  110  git branch
+  111  git switch ChangePokemon
+  112  git switch master
+  # History is for Winnerds
+  113  history > history.txt
