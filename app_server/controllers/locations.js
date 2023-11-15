@@ -3,6 +3,7 @@
     // Page variables stored like this.
     const gamePage = function(req, res){
         res.render('gamepage', {
+            // Adding a comment to make sure this is still connected to Github
             pageHeader: {title: 'Games Page', heading: 'Competitive Everywhere'},
                 games: [
                      {title: "Zelda", 
