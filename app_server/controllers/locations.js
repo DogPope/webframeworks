@@ -1,4 +1,8 @@
 /* GET 'home' page */
+// Where the Fuck is app.js pulling index from?
+const index = function(req, res){
+    res.render('index', {   title: 'Index'})
+};
 
     // Page variables stored like this.
     const gamePage = function(req, res){
@@ -53,7 +57,8 @@
     };
 
     module.exports = {
-    gamePage,
-    login,
-    registerPage
+        gamePage,
+        index,
+        login,
+        registerPage
     };
