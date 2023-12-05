@@ -1,30 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const ctrlLocations = require('../controllers/locations');
-const ctrlReviews = require('../controllers/reviews');
-// locations
+const ctrlCustomers = require('../controllers/locations');
+const ctrlGames = require('../controllers/games');
 
 const index = function(req,res) {
     res.render('index');
 }
 module.exports.index = index;
 
+// Routes concerning the Customers.
 router
-    .route('/locations')
-    .get(ctrlLocations.locationsListByDistance)
-    .post(ctrlLocations.locationsCreate);
+    .route('/customers')
+    .get(ctrlCustomers.customerCreate)
 router
-    .route('/locations/:locationid')
-    .get(ctrlLocations.locationsReadOne)
-    .put(ctrlLocations.locationsUpdateOne)
-    .delete(ctrlLocations.locationsDeleteOne);
-// reviews
+    .route('/customers/:custid')
+    .get(ctrlCustomers.customerReadOne)
+    .put(ctrlCustomers.customerUpdate)
+    .delete(ctrlCustomers.customerDeleteOne);
+
+// Routes for the data page.
 router
-    .route('/locations/:locationid/reviews')
-    .post(ctrlReviews.reviewsCreate);
+    .route('/gamepage')
+    .get(ctrlGames.getGame);
+
 router
-    .route('/locations/:locationid/reviews/:reviewid')
-    .get(ctrlReviews.reviewsReadOne)
-    .put(ctrlReviews.reviewsUpdateOne)
-    .delete(ctrlReviews.reviewsDeleteOne);
+    .route('/register')
+router
+    .route('login')
+
 module.exports = router;

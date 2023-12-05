@@ -1,72 +1,74 @@
 const mongoose = require('mongoose');
-const {customerModel} = require("../models/locations");
-const Customer = mongoose.model('customer');
-const locationsCreate = function (req, res) {
-    Customer.create({
-        username: req.body.username,
-        password: req.body.password,
-        phone: req.body.phone,
-        coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
-    }, (err, location) => {
-        if (err) {
-            res
-                .status(400)
-                .json(err);
-        } else {
-            res
-                .status(201)
-                .json(location);
-        }
+const customerModel = mongoose.model('customer');
+
+// Valid Ids.
+const customerCreate = async function (req, res) {
+    const daniel = new customerModel({
+        name: "Daniel",
+        password: "Jeff",
+        phone: "0868901314",
+        cardnumber: "1234123412341234"
     });
-};
-const locationsListByDistance = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"}); };
-const locationsReadOne = function (req, res) {
-    if (req.params && req.params.locationid) {
-        Location
-            .findById(req.params.locationid)
-            .then((err, location) => {
-                if (!location) {
-                    res
-                        .status(404)
-                        .json({
-                            "message": "locationid not found"
-                        });
-                    return;
-                } else if (err) {
-                    res
-                        .status(404)
-                        .json(err);
-                    return;
-                }
-                res
-                    .status(200)
-                    .json(location);
-            });
-    } else {
-        res
-            .status(404)
-            .json({
-                "message": "No locationid in request"
-            });
+    try {
+        await daniel
+            .save();
+            console.log("Customer saved successfully");
+            res.status(201).json(daniel);
+    } catch (error) {
+        console.error("Error saving customer:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
-const locationsUpdateOne = function (req, res) {
+const customerReadOne = function (req, res) {
+    // Read statement. Extreme error checking edition.
+    customerModel
+        .find({})
+        .then((customer) => {
+            if (!customer || customer.length === 0) {
+                console.log('No Customers found');
+                return res.status(404).json({ error: 'No Customers found' });
+            }
+
+            console.log('Customers found:', customer);
+            res.status(200).json(customer);
+        })
+        .catch((err) => {
+            console.error('Error:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        });
+};
+const customerUpdate = async function (req, res) {
+    const customerId = '';
+
+    const updatedData = req.body;
+
+    try {
+        const updatedCustomer = await customerModel.findOneAndUpdate(
+            { _id: customerId },
+            updatedData,
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedCustomer) {
+            return res.status(404).json({ error: 'Customer not found' });
+        }
+
+        console.log('Customer updated successfully:', updatedCustomer);
+        res.status(200).json(updatedCustomer);
+    } catch (error) {
+        console.error('Error updating customer:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+const customerDeleteOne = function (req, res) {
     res
         .status(200)
         .json({"status" : "success"});
 };
-const locationsDeleteOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"});
-};
+
 module.exports = {
-    locationsListByDistance,
-    locationsCreate,
-    locationsReadOne,
-    locationsUpdateOne,
-    locationsDeleteOne
+    customerCreate,
+    customerReadOne,
+    customerUpdate,
+    customerDeleteOne
 };
