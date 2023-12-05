@@ -21,4 +21,6 @@ const gameSchema = new mongoose.Schema({
     status: String
 });
 
-mongoose.model('Game', customerSchema, gameSchema);
+const customerModel = mongoose.model('customer', customerSchema);
+const gameModel = mongoose.model('steam', gameSchema);
+module.exports = { customerModel, gameModel };

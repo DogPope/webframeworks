@@ -21,5 +21,5 @@ const gameSchema = new mongoose.Schema({
 });
 
 const customerModel = mongoose.model('customer', customerSchema);
-const gameModel = mongoose.model('Steam', gameSchema);
+const gameModel = mongoose.model('steam', gameSchema);
 module.exports = { customerModel, gameModel };
