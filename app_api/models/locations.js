@@ -10,6 +10,7 @@ const customerSchema = new mongoose.Schema({
 const gameSchema = new mongoose.Schema({
     title: String,
     description: String,
+    imageRef: String,
     genre: String,
     price: Number
 }, {collection: 'steam'});
