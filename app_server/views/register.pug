@@ -1,32 +1,35 @@
 extends layout
 
 block content
-  form(method='get')
-    .container
-      h2 #{title}
-      h3 #{heading}
-      p Please fill in this form to create an account, all fields must be filled in!
-      hr
-      label(for='email')
-        b Email
-      input#email(type='text', placeholder='Email', name='email', required)
-      label(for='cardnumber')
-        b Credit Card Number
-      input#cardnumber(type='password', placeholder='Card Number', name='card', required)
-      br
-      label(for='phone')
-        b Phone
-      input#phone(type='text', placeholder='Phone', name='phone', required)
-      label(for='password')
-        b Password
-      input#password(type='password', placeholder='Password', name='password', required)
-      p
-        | By creating an account you agree to our 
-        a(href='/about') Terms &amp; Privacy
-        | .
-      button.registerbtn(type='submit', value='submit') Register
-    .signin
-      p
-        | Already have an account? 
-        a(href='/login') Sign in
-        | .
+  h2 #{title}
+  h3 #{heading}
+  h3 #{loginStatus}
+    form(method='post')
+      .container
+        p Please fill in this form to create an account.
+        hr
+        label(for='name')
+          b Name
+        input#name(type='text', placeholder='Name', name='name', required)
+        br
+        label(for='phone')
+          b Phone
+        input#phone(type='text', placeholder='Phone', name='phone', required)
+        br
+        label(for='password')
+          b Password
+        input#password(type='password', placeholder='Password', name='password', required)
+        br
+        label(for='cardnumber')
+          b Credit Card Number
+        input#cardnumber(type='text', placeholder='Card Number', name='cardnumber', required)
+        p
+          | By creating an account you agree to our
+          a(href='/about') Terms &amp; Privacy
+          | .
+        button.registerbtn(type='submit', value='submit') Register
+      .signin
+        p
+          | Already have an account?
+          a(href='/login') Sign in
+          | .

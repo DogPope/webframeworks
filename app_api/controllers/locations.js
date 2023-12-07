@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const customerModel = mongoose.model('customer');
+const customerModel = mongoose.model('customers');
 
 const about = function(req, res) {
     const about = true;
@@ -36,81 +36,37 @@ const loginUser = async function (req, res) {
         res.status(500).json({ error: 'Login failed' });
     }
 };
-const customerCreate = async function (req, res) {
-    const daniel = new customerModel({
-        name: "Daniel",
-        password: "Jeff",
-        phone: "0868901314",
-        cardnumber: "1234123412341234"
-    });
-    try {
-        await daniel
-            .save();
-            console.log("Customer saved successfully");
-            res.status(201).json(daniel);
-    } catch (error) {
-        console.error("Error saving customer:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
 const pageVariables = function(req, res){
     res.render('register', {
         title: "Registration",
         heading: "Hello There!"
     })
 }
-/*const registerCustomer = async function(req, res){
-    res.render('register', {
-        title: "Registration",
-        heading: "Hello There!"
-    })
-    //const custData = req.body;
-    const jack = new customerModel({
-        name: req.body.name,
-        password: req.body.password,
-        phone: req.body.phone,
-        cardnumber: req.body.cardnumber
-    })
-    try {
-        await jack
-            .save();
-        console.log("Customer saved successfully");
-        res.status(201).json(jack);
-    } catch (error) {
-        console.error("Error saving customer:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};*/
-const registerCustomer = async function (req, res) {
-    const { name, cardnumber, password, phone} = req.body;
+const customerCreate = async function (req, res) {
+    const { name, password, phone, cardnumber} = req.body;
+    console.log('Form Data:', { name, password, phone, cardnumber });
 
     if(name === "" || cardnumber === "" || password === "" || phone === ""){
-        const err1 = "Some fields are empty";
+        const err1 = "All fields need to be filled in!";
         res.render('register', { title: 'Register', err1 });
     }
-    else {
-        const foundUser = await customerModel.findOne({ name: name });
-        if (foundUser) {
-            const err1 = "username already exists";
-            res.render('register', {title: 'Register', err1});
-        } else {
-            const st = true;
-            const newUser = new customerModel({
-                name,
-                phone,
-                password,
-                cardnumber
+    else{
+        const newUser = new customerModel({
+            name,
+            phone,
+            password,
+            cardnumber
+        })
+        try {
+            await newUser.save();
+            console.log('User registered successfully');
+            res.render('register', {
+                title: 'Register',
+                loginStatus: 'Your registration was successful!'
             });
-            newUser
-                .save()
-                .then(() => {
-                    console.log('User registered successfully');
-                    res.render('register', {title: 'Register'});
-                })
-                .catch((err) => {
-                    console.error('Error saving user:', err);
-                    res.status(500).json({error: 'Failed to register user'});
-                });
+        } catch (err) {
+            console.error('Error saving user:', err);
+            res.status(500).json({error: `Failed to register user. ${err.message}`});
         }
     }
 };
@@ -164,7 +120,6 @@ const customerDeleteOne = function (req, res) {
 module.exports = {
     about,
     pageVariables,
-    registerCustomer,
     customerCreate,
     loginPage,
     loginUser,

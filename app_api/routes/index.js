@@ -29,11 +29,7 @@ router
 router
     .route('/registration')
     .get(ctrlCustomers.pageVariables)
-    .post(ctrlCustomers.registerCustomer);
-/*router
-    .route('/login')
-    .get(ctrlCustomers.login)
-    .put(ctrlCustomers.customerCreate);*/
+    .post(ctrlCustomers.customerCreate);
 
 router
     .route('/about')
