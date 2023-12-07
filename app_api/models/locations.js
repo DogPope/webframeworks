@@ -5,21 +5,16 @@ const customerSchema = new mongoose.Schema({
     password: String,
     phone: String,
     cardnumber: String
-});
+}, {collection: 'customer'});
 
 const gameSchema = new mongoose.Schema({
     title: String,
+    imageRef: String,
     description: String,
     genre: String,
-    price: Number,
-    rating: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 10
-    }
-});
+    price: Number
+}, {collection: 'steam'});
 
-const customerModel = mongoose.model('customer', customerSchema);
-const gameModel = mongoose.model('steam', gameSchema);
+const customerModel = mongoose.model('customer', customerSchema, 'steam');
+const gameModel = mongoose.model('steam', gameSchema, 'steam');
 module.exports = { customerModel, gameModel };

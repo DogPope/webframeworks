@@ -1,14 +1,14 @@
 extends layout
 block content
   .col-12
-   h1 #{pageHeader.title}
-   h2 #{pageHeader.heading}
+    h1 #{title}
+    h2 #{heading}
   .row
    each game in games
     .card
      .card-block
       h4 Title: #{game.title}
       p  Price: €#{game.price}
-      img(src=game.image, width=300, height=300)
+      img(src=game.imageRef, width=300, height=300)
       p Description: #{game.description}
       p Genre: #{game.genre}

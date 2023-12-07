@@ -1,30 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const ctrlLocations = require('../controllers/locations');
-const ctrlReviews = require('../controllers/reviews');
-// locations
+const ctrlCustomers = require('../controllers/locations');
+const ctrlGames = require('../controllers/games');
 
 const index = function(req,res) {
     res.render('index');
 }
 module.exports.index = index;
 
+// Routes concerning the Customers.
 router
-    .route('/customers')
-    .get(ctrlLocations.locationsCreate)
-    .put(ctrlLocations.locationsUpdateOne);
-router
-    .route('/customers/:custid')
-    .get(ctrlLocations.locationsReadOne)
-    .put(ctrlLocations.locationsUpdateOne)
-    .delete(ctrlLocations.locationsDeleteOne);
+    .route('/login')
+    .get(ctrlCustomers.loginPage)
+    .post(ctrlCustomers.loginUser);
 
 router
-    .route('/customers/:custid/reviews')
-    .post(ctrlReviews.reviewsCreate);
+    .route('/login/:custid')
+    .get(ctrlCustomers.customerReadOne)
+    .put(ctrlCustomers.customerUpdate)
+    .delete(ctrlCustomers.customerDeleteOne);
+
+// Routes for the data page.
+// If you're missing something, it may be res.render() in locations.
+router
+    .route('/gamepage')
+    .get(ctrlGames.getGame);
+
+router
+    .route('/registration')
+    .get(ctrlCustomers.pageVariables)
+    .post(ctrlCustomers.registerCustomer);
 /*router
-    .route('/customers/:custid/reviews/:reviewid')
-    .get(ctrlReviews.reviewsReadOne)
-    .put(ctrlReviews.reviewsUpdateOne)
-    .delete(ctrlReviews.reviewsDeleteOne);*/
+    .route('/login')
+    .get(ctrlCustomers.login)
+    .put(ctrlCustomers.customerCreate);*/
+
+router
+    .route('/about')
+    .get(ctrlCustomers.about);
+
 module.exports = router;
