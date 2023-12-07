@@ -11,6 +11,7 @@ const gameSchema = new mongoose.Schema({
     title: String,
     imageRef: String,
     description: String,
+    imageRef: String,
     genre: String,
     price: Number
 }, {collection: 'steam'});
