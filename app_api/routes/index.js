@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ctrlCustomers = require('../controllers/locations');
 const ctrlGames = require('../controllers/games');
+const passport = require('passport');
 
 const index = function(req,res) {
     res.render('index');
@@ -12,7 +13,7 @@ module.exports.index = index;
 router
     .route('/login')
     .get(ctrlCustomers.loginPage)
-    .post(ctrlCustomers.loginUser);
+    .post(ctrlCustomers.loginUser)
 
 router
     .route('/login/:custid')
