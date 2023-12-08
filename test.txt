@@ -1,1 +1,34 @@
 This is a text file. The best programming tool is a Bulbasaur in place of a rubber duck.
+
+// Passport.js code
+app.use(session({
+    secret: "secret",
+    resave: false ,
+    saveUninitialized: true ,
+}))
+
+authUser = (user, password, done) => {
+    let authenticated_user = { id: 123, name: "Kyle"}
+    return done (null, authenticated_user )
+}
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy (authUser));
+
+app.post ("/login", passport.authenticate('local', {
+    successRedirect: "/gamepage",
+    failureRedirect: "/login",
+}))
+
+checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect("/gamepage")
+}
+app.get("/login", checkAuthenticated, (req, res) => {
+    res.render("gamepage", {
+        name: req.user.name
+    })
+})

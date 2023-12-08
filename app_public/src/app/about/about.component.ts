@@ -10,6 +10,5 @@ import {RouterOutlet} from "@angular/router";
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-  constructor() {}
-  title = "Jack";
+  title = "Title";
 }

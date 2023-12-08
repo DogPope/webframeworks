@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const customerModel = mongoose.model('customers');
-const passport = require('passport');
-
-const request = require('request');
 
 const apiOptions = {
     server : 'http://localhost:3000'
@@ -10,19 +7,21 @@ const apiOptions = {
 if (process.env.NODE_ENV === 'production') {
     apiOptions.server = 'https://danieljamesont00158237.onrender.com';
 }
-/*const requestOptions = {
+const requestOptions = {
     url : 'http://localhost:3000/api',
     method : 'GET',
     json : {},
     qs : {
         offset : 20
     }
-};*/
-/*
-*   passport.deserializeUser((userObj, done) => {      done (null, userObj )})
-* */
+};
 
-
+const pageVariables = function(req, res){
+    res.render('register', {
+        title: "Registration",
+        heading: "Hello There!"
+    })
+}
 const about = function(req, res) {
     res.render('about', {
         title: 'About Us!',
@@ -56,9 +55,8 @@ const loginUser = async function (req, res) {
     const loggedIn = true;
     const invalid = true;
 
-    // Passport Function
     authUser = (user, password, done) => {
-        let authenticated_user = { id: 123, name: "Kyle"}
+        let authenticated_user = { id:"65722b54ff9a4282ebe0a346", name: "Jeff"}
         return done (null, authenticated_user )
     }
 
@@ -69,33 +67,18 @@ const loginUser = async function (req, res) {
             res.render('login', { title: 'login', invalid});
             return;
         }
-        req.session.userId = null;
         req.session.userId = user._id;
 
         const accounts = await customerModel.findOne(req.session.userId);
 
         res.render('gamepage', { title: 'Data Page', loggedIn, name});
-        // Passport Function
-        passport.serializeUser( (userObj, done) => {
-            done(null, userObj)
-            }
-        )
-        passport.deserializeUser((userObj, done) => {
-            done (null, userObj )
-            }
-        )
+
 
     } catch (err) {
         console.error('Error during login:', err);
         res.status(500).json({ error: 'Login failed' });
     }
 };
-const pageVariables = function(req, res){
-    res.render('register', {
-        title: "Registration",
-        heading: "Hello There!"
-    })
-}
 const customerCreate = async function (req, res) {
     const { name, password, phone, cardnumber} = req.body;
     console.log('Form Data:', { name, password, phone, cardnumber });
@@ -165,11 +148,6 @@ const customerUpdate = async function (req, res) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-const customerDeleteOne = function (req, res) {
-    res
-        .status(200)
-        .json({"status" : "success"});
-};
 
 module.exports = {
     about,
@@ -178,6 +156,5 @@ module.exports = {
     loginPage,
     loginUser,
     customerReadOne,
-    customerUpdate,
-    customerDeleteOne
+    customerUpdate
 };
