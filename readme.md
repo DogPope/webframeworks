@@ -1,8 +1,8 @@
 `$ git clone -b main https://github.com/DogPope/webframeworks.git`
 
 ---
---If you are using the Register customer function, DO NOT put valid credit card numbers into the database! Its not very well secured. I have also have access to the raw data. Not that I plan on stealing it,
-but I thought you should know regardless.-- 
+If you are using the Register customer function, DO NOT put valid credit card numbers into the database! Its not very well secured. I have also have access to the raw data. Not that I plan on stealing it,
+but I thought you should know regardless.
 ---
 
 How to use application:
